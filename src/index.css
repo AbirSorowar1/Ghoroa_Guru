@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #0f172a;
+    color: #f1f5f9;
+    overflow-x: hidden;
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #1e293b;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #f97316;
+    border-radius: 3px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-brand-500 to-brand-600 text-white font-semibold px-6 py-3 rounded-xl hover:from-brand-600 hover:to-brand-700 transition-all duration-300 shadow-lg hover:shadow-brand-500/30 hover:scale-105 active:scale-95;
+  }
+  .btn-secondary {
+    @apply border border-brand-500/50 text-brand-400 font-semibold px-6 py-3 rounded-xl hover:bg-brand-500/10 transition-all duration-300;
+  }
+  .card {
+    @apply bg-deep-800 border border-white/5 rounded-2xl shadow-xl;
+  }
+  .glass {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+  .nav-link {
+    @apply relative text-slate-300 hover:text-white font-medium transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-500 after:transition-all after:duration-300 hover:after:w-full;
+  }
+  .nav-link.active {
+    @apply text-brand-400 after:w-full;
+  }
+  .star-filled {
+    @apply text-yellow-400;
+  }
+  .input-field {
+    @apply w-full bg-deep-700 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition-colors;
+  }
+  .section-title {
+    @apply font-display text-3xl md:text-4xl font-bold text-white;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-400 to-orange-300 bg-clip-text text-transparent;
+  }
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+  .grid-pattern {
+    background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
+
+/* Animated gradient border */
+.animated-border {
+  position: relative;
+  background: linear-gradient(#1e293b, #1e293b) padding-box,
+    linear-gradient(135deg, #f97316, #fb923c, #fdba74, #f97316) border-box;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  animation: borderRotate 3s linear infinite;
+}
+
+@keyframes borderRotate {
+  0% { background: linear-gradient(#1e293b, #1e293b) padding-box,
+    linear-gradient(135deg, #f97316, #fb923c, #fdba74, #f97316) border-box; }
+  100% { background: linear-gradient(#1e293b, #1e293b) padding-box,
+    linear-gradient(495deg, #f97316, #fb923c, #fdba74, #f97316) border-box; }
+}
+
+/* Floating particles */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(249,115,22,0.6), transparent);
+  animation: floatParticle linear infinite;
+  pointer-events: none;
+}
+
+@keyframes floatParticle {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+
+/* Loading skeleton */
+.skeleton {
+  background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Page transitions */
+.page-enter {
+  animation: pageEnter 0.4s ease-out forwards;
+}
+
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
