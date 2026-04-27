@@ -51,8 +51,8 @@ export default function LandingPage() {
       await loginWithGoogle();
       toast.success("Welcome to Ghoroa Guru! 🎉");
     } catch (e) {
-      toast.error("Login failed. Please try again.");
-      console.error(e);
+      console.error("Login error:", e);
+      toast.error(`Login failed: ${e.message}`);
     } finally {
       setLoading(false);
     }
